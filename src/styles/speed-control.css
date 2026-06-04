@@ -1,0 +1,113 @@
+.speed-controller {
+    margin: 5px 10px;
+
+    width: calc(100% - 40px);
+    max-width: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.range-slider {
+    position: relative;
+    margin: 15px 0 10px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+
+    width: 100%;
+    height: 6px;
+    background-color: var(--overlay-color);
+    cursor: pointer;
+
+    box-sizing: border-box;
+}
+
+.range-slider-thumb {
+    position: absolute;
+    border: 2px solid var(--accent-color);
+    border-radius: 6px;
+
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 33.3333%; /* second index */
+    transform: translate(-50%, -50%);
+
+    background-color: var(--background-color);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    z-index: 10;
+
+    transition: background-color 0.1s;
+    transition: left 0.1s ease;
+}
+
+.range-slider-thumb:hidden {
+    display: none;
+}
+
+.range-slider:hover .ui-range-thumb {
+    background-color: color-mix(in srgb, var(--background-color) 80%, white 20%);
+}
+
+.range-slider-thumb-line {
+    width: 2px;
+    height: 10px;
+    background-color: var(--primary-font-color);
+    opacity: 0.6;
+}
+
+.range-slider-tick {
+    position: absolute;
+    border-radius: 2px;
+
+    width: 4px;
+    height: 12px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: var(--primary-font-color);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.speed-text-message {
+    margin-top: 5px;
+
+    color: var(--accent-color);
+
+    font-family: var(--default-font-family);
+    font-size: var(--default-font-size);
+    font-weight: bold;
+
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+@media (max-width: 800px) {
+
+    .speed-controller {
+        margin: 15px auto;
+        max-width: 500px;
+
+        text-align: center;
+        align-items: center;
+    }
+
+    .range-slider-thumb{
+        width: 32px;
+        height: 32px;
+    }
+
+    .range-slider {
+        height: 8px;
+    }
+
+    .range-slider-tick {
+        height: 14px;
+    }
+}

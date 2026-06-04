@@ -1,0 +1,39 @@
+.autoscroll-container {
+    margin: 10px auto;
+    text-align: left;
+}
+
+/* Чекбокс */
+#autoscroll-check {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+
+    accent-color: var(--accent-color, #4aa3ff);
+
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+#autoscroll-check:checked {
+    box-shadow: 0 0 10px var(--accent-color);
+    transform: scale(1.1);
+}
+
+/* Фокус для доступности */
+#autoscroll-check:focus-visible {
+    outline: 2px solid var(--accent-color, #4aa3ff);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+@media (max-width: 800px) {
+
+    .autoscroll-container {
+        text-align: center;
+    }
+
+    #autoscroll-check {
+        width: 28px;
+        height: 28px;
+    }
+}

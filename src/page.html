@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Brainfuck Code Editor</title>
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="styles/speed-control.css">
+        <link rel="stylesheet" href="styles/checkbox.css">
+    </head>
+    <body>
+        <div id="root">
+            <div id="intro">
+                <h1>Brainfuck Code Editor</h1>
+                <h3>Tutorial: <a href="https://en.wikipedia.org/wiki/Brainfuck">Wikipedia</a></h3>
+            </div>
+            <hr>
+            <div id="editor">
+                <div id="control">
+                    <div class="hbox">
+                        <div class="vbox">
+                            <button class="bf" id="run">[&gt;]</button>
+                            <h4 class="bf-title">Run</h4>
+                        </div>
+                        <div class="vbox">
+                            <button class="bf" id="terminate">[-]</button>
+                            <h4 class="bf-title">Stop</h4>
+                        </div>
+                        <div class="vbox">
+                            <button class="bf" id="step">&gt;+</button>
+                            <h4 class="bf-title">Step</h4>
+                        </div>
+                        <div class="vbox">
+                            <button class="bf" id="reset">&lt;</button>
+                            <h4 class="bf-title">Reset</h4>
+                        </div>
+                    </div>
+
+                    <div class="speed-controller">
+                        <h4 class="bf-title">Speed</h4>
+                        <div class="range-slider" id="slider-track">
+                            <div class="range-slider-thumb" id="slider-thumb">
+                                <div class="range-slider-thumb-line left"></div>
+                                <div class="range-slider-thumb-line right"></div>
+                            </div>
+                            <div class="range-slider-tick" style="left: 0%;"></div>
+                            <div class="range-slider-tick" style="left: 25%;"></div>
+                            <div class="range-slider-tick" style="left: 50%;"></div>
+                            <div class="range-slider-tick" style="left: 75%;"></div>
+                            <div class="range-slider-tick" style="left: 100%;"></div>
+                        </div>
+                        <span class="speed-text-message" id="speed-label">50 ms</span>
+                    </div>
+                    <div class="autoscroll-container">
+                        <label class="bf-title">
+                            <input type="checkbox" id="autoscroll-check" checked>
+                            Autoscroll memory
+                        </label>
+                    </div>
+                </div>
+
+                <div id="code-state">
+                    <div id="memory">
+                        <h3>Memory</h3>
+                        <div class="memory-box" id="memory-box">
+                            <!-- JS will populate this
+                            <div class="memory-cell" id="mem-1">
+                                <div class="memory-index">1</div>
+                                <div>152</div>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                    <div id="code-input">
+                        <h3>Code</h3>
+                        <textarea id="input"></textarea>
+                    </div>
+                    <div id="result-output">
+                        <h3>Output</h3>
+                        <textarea readonly id="output"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <footer>
+            <p>
+                <h3>Created by <a href="https://github.com/the-koroche">the-koroche</a></h3>
+                <h3>Also check out <a href="https://github.com/the-koroche/brainfuce-web">Source</a></h3>
+                <h3>Licensed under <a href="https://github.com/the-koroche/brainfuce-web/blob/main/LICENSE">MIT License</a></h3>
+            </p>
+        </footer>
+
+        <script type="module" src="main.js"></script>
+    </body>
+</html>
