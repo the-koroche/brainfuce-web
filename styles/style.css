@@ -11,6 +11,7 @@
     --default-font-size: 16px;
 
     --bf-button-size: 64px;
+    --memory-cell-size: 32px;
     --bf-title-font-size: calc(var(--bf-button-size) * 0.25);
 }
 
@@ -212,12 +213,12 @@ textarea {
     border-radius: 10px;
     padding: 5px;
 
-    min-height: calc((var(--default-font-size) * 1.4) * 3);
     width: calc(100% - 20px);
     box-sizing: border-box;
 
     background-color: var(--overlay-color);
     color: var(--primary-font-color);
+    outline: #00000000 solid 2px;
 
     font-family: monospace;
     font-size: calc(var(--default-font-size) * 1.4);
@@ -226,10 +227,11 @@ textarea {
     resize: none;
 
     transition: height 0.1s ease;
+    transition: outline 0.2s ease;
 }
 
 textarea:focus {
-    outline: none;
+    outline: var(--accent-color) solid 2px;
 }
 
 /* Specific */
@@ -269,7 +271,7 @@ button.bf {
     border-radius: 10px;
     padding: 2px 0;
 
-    height: calc((var(--default-font-size) * 5) + 14px); /* 10px for padding, 4px for borders */
+    height: calc((var(--default-font-size) * 4) + 14px); /* 10px for padding, 4px for borders */
     width: calc(100% - 24px);
 
     background-color: var(--overlay-color);
@@ -295,8 +297,8 @@ button.bf {
     border-radius: 10px;
     padding: 0;
 
-    width: calc(var(--default-font-size) * 5);
-    height: calc(var(--default-font-size) * 5);
+    width: calc(var(--default-font-size) * 4);
+    height: calc(var(--default-font-size) * 4);
 
     background-color: var(--overlay-color);
 

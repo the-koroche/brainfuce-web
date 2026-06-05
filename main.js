@@ -3,6 +3,7 @@ import { StateMachine } from './state_machine.js';
 // DOM
 const codeInput = document.getElementById('input');
 const outputArea = document.getElementById('output');
+const memoryTitle = document.getElementById('memory-title');
 const memoryBox = document.getElementById('memory-box');
 
 const btnRun = document.getElementById('run');
@@ -28,7 +29,7 @@ let isScrollingPause = false;
 let wasStep = false;
 
 const SPEED_MODES = [
-    { label: "As fast as possible", delay: 0,   stepsPerTick: 50, percentage: 0 },
+    { label: "As fast as possible", delay: 0,   stepsPerTick: 500, percentage: 0 },
     { label: "2.5 ms",               delay: 5,   stepsPerTick: 2,  percentage: 25 },
     { label: "50 ms",              delay: 50,  stepsPerTick: 1,  percentage: 50 },
     { label: "200 ms",             delay: 200, stepsPerTick: 1,  percentage: 75 },
@@ -121,6 +122,8 @@ function updateUI() {
         memoryBox.appendChild(cell);
     });
 
+    memoryTitle.innerText = `Memory (${sortedIndices.length} cell` + (sortedIndices.length > 1 ? 's' : '') + ')';
+
     // Handle horizontal auto-scrolling if the cell is valid and not in max-speed mode
     if (activeCellDOM && currentSpeedMode.delay > 0 && bf.running && autoscrollCheck.checked) {
         checkVisibilityAndScroll(activeCellDOM);
@@ -174,7 +177,6 @@ function highlightIP(ip) {
 function startInterval() {
     if (runInterval) return;
 
-    codeInput.value = codeInput.value.replace(/[^+-<>[],.]/g, '');
     codeInput.setAttribute('readonly', true);
 
     runInterval = setInterval(() => {
@@ -186,8 +188,6 @@ function startInterval() {
                 outputArea.value += res.output;
                 outputArea.scrollTop = outputArea.scrollHeight;
             }
-
-            highlightIP(bf.getInstructionPointer());
 
             if (!res.status) {
                 stopExecution();
@@ -201,6 +201,7 @@ function startInterval() {
         }
 
         updateUI();
+        highlightIP(bf.getInstructionChar().index);
     }, currentSpeedMode.delay);
 }
 
@@ -218,7 +219,6 @@ function stopExecution() {
     wasStep = false;
 
     codeInput.removeAttribute('readonly');
-    codeInput.value = codeInput.value.replace(/[^+-<>[],.]/g, '');
     setControlStates(false);
 }
 
@@ -233,7 +233,6 @@ function setControlStates(isRunning) {
 
 btnStep.addEventListener('click', () => {
     if (bf.running || isScrollingPause) return;
-    codeInput.value = codeInput.value.replace(/[^+-<>[],.]/g, '');
     wasStep = true;
 
     // Load initial textarea instructions on initialization step click
@@ -247,8 +246,8 @@ btnStep.addEventListener('click', () => {
         outputArea.scrollTop = outputArea.scrollHeight;
     }
 
-    highlightIP(bf.getInstructionPointer());
     updateUI();
+    highlightIP(bf.getInstructionChar().index);
 
     if (!res.status) {
         stopExecution();
@@ -284,12 +283,11 @@ btnReset.addEventListener('click', () => {
     updateUI();
 });
 
-// Allow only +-<>[],. characters
-codeInput.addEventListener('input', () => {
-    codeInput.value = codeInput.value.replace(/[^+-<>[],.]/g, '');
-});
-
 // Initial UI setup
 setSliderValue(currentModeIndex);
 updateUI();
 setControlStates(false);
+
+// Initial focus
+codeInput.focus();
+codeInput.textContent = "+[>++>+++>++++>+++++<<<<[[-]>]<<<<<+]\n; simple 1,2,3,4,5 loop"
