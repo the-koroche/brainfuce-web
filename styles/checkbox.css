@@ -13,12 +13,14 @@ input[type="checkbox"] {
     height: 16px;
     cursor: pointer;
 
-    accent-color: var(--accent-color, #4aa3ff);
+    accent-color: var(--accent-color);
 
     font-size: var(--default-font-size);
     font-family: var(--default-font-family);
 
-    transition: box-shadow 0.2s ease, transform 0.15s ease;
+    transition:
+            box-shadow 0.2s ease,
+            transform 0.15s ease;
 }
 
 input[type="checkbox"]:checked {
@@ -28,7 +30,7 @@ input[type="checkbox"]:checked {
 
 /* Focus for accessibility */
 input[type="checkbox"]:focus-visible {
-    outline: 2px solid var(--accent-color, #4aa3ff);
+    outline: 2px solid var(--accent-color);
     outline-offset: 2px;
     border-radius: 4px;
 }
