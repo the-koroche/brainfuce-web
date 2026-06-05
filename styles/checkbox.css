@@ -1,6 +1,11 @@
 .checkbox-container {
     margin: 5px 10px;
+
     text-align: left;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 input[type="checkbox"] {
@@ -28,6 +33,12 @@ input[type="checkbox"]:focus-visible {
     border-radius: 4px;
 }
 
+.checkbox-text {
+    margin-left: 5px;
+    font-size: var(--default-font-size);
+    font-family: var(--default-font-family);
+}
+
 @media (max-width: 800px) {
 
     .checkbox-container {
@@ -36,7 +47,7 @@ input[type="checkbox"]:focus-visible {
     }
 
     input[type="checkbox"] {
-        width: 28px;
-        height: 28px;
+        width: 24px;
+        height: 24px;
     }
 }

@@ -1,21 +1,21 @@
 import { StateMachine } from './state_machine.js';
 
 // DOM
-const codeInput = document.getElementById('input');
+const codeInput = document.getElementById('code-input');
 const outputArea = document.getElementById('output');
 const memoryTitle = document.getElementById('memory-title');
 const memoryBox = document.getElementById('memory-box');
 
-const btnRun = document.getElementById('run');
-const btnTerminate = document.getElementById('terminate');
-const btnStep = document.getElementById('step');
-const btnReset = document.getElementById('reset');
+const btnRun = document.getElementById('run-button');
+const btnStop = document.getElementById('stop-button');
+const btnStep = document.getElementById('step-button');
+const btnReset = document.getElementById('reset-button');
 
 const sliderTrack = document.getElementById('slider-track');
 const sliderThumb = document.getElementById('slider-thumb');
 const speedLabel = document.getElementById('speed-label');
-const autoscrollCheck = document.getElementById('autoscroll-check');
-const highlightCheck = document.getElementById('highlight-check');
+const autoscrollCheck = document.getElementById('autoscroll-memory-check');
+const highlightCheck = document.getElementById('highlight-command-check');
 
 // State
 const bf = new StateMachine();
@@ -171,7 +171,7 @@ function highlightIP(ip) {
     if (document.activeElement !== codeInput) {
         codeInput.focus();
     }
-    codeInput.setSelectionRange(ip-1, ip);
+    codeInput.setSelectionRange(ip, ip+1);
 }
 
 function startInterval() {
@@ -226,7 +226,7 @@ function setControlStates(isRunning) {
     btnRun.classList.toggle('disabled', isRunning);
     btnStep.classList.toggle('disabled', isRunning);
     btnReset.classList.toggle('disabled', isRunning);
-    btnTerminate.classList.toggle('disabled', !isRunning);
+    btnStop.classList.toggle('disabled', !isRunning);
 }
 
 // Button event handlers
@@ -267,7 +267,7 @@ btnRun.addEventListener('click', () => {
     startInterval();
 });
 
-btnTerminate.addEventListener('click', () => {
+btnStop.addEventListener('click', () => {
     stopExecution();
 });
 
