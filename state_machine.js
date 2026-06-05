@@ -69,7 +69,7 @@ export class StateMachine {
                 outputChar = String.fromCharCode(this.tape[this.ptr]);
                 break;
             case ",":
-                this.tape[this.ptr] = 0;
+                this.tape[this.ptr] = (prompt("Enter a character")?.charCodeAt(0) ?? 0) & 255;
                 break;
             case "[":
                 if (this.tape[this.ptr] === 0) {

@@ -52,11 +52,19 @@
                         </div>
                         <span class="speed-text-message" id="speed-label">50 ms</span>
                     </div>
-                    <div class="autoscroll-container">
-                        <label class="bf-title">
-                            <input type="checkbox" id="autoscroll-check" checked>
-                            Autoscroll memory
-                        </label>
+                    <div class="hbox">
+                        <div class="checkbox-container">
+                            <label class="bf-title">
+                                <input type="checkbox" id="autoscroll-check" checked>
+                                Autoscroll memory
+                            </label>
+                        </div>
+                        <div class="checkbox-container">
+                            <label class="bf-title">
+                                <input type="checkbox" id="highlight-check" checked>
+                                Highlight command
+                            </label>
+                        </div>
                     </div>
                 </div>
 
@@ -72,9 +80,11 @@
                             -->
                         </div>
                     </div>
-                    <div id="code-input">
-                        <h3>Code</h3>
-                        <textarea id="input"></textarea>
+                    <div class="spacer">
+                        <div id="code-input">
+                            <h3>Code</h3>
+                            <textarea id="input"></textarea>
+                        </div>
                     </div>
                     <div id="result-output">
                         <h3>Output</h3>

@@ -14,6 +14,7 @@ const sliderTrack = document.getElementById('slider-track');
 const sliderThumb = document.getElementById('slider-thumb');
 const speedLabel = document.getElementById('speed-label');
 const autoscrollCheck = document.getElementById('autoscroll-check');
+const highlightCheck = document.getElementById('highlight-check');
 
 // State
 const bf = new StateMachine();
@@ -163,12 +164,18 @@ function checkVisibilityAndScroll(activeCell) {
 // Interpreter loop management
 
 function highlightIP(ip) {
-    codeInput.focus();
+    if (!highlightCheck.checked || !codeInput || ip === undefined || ip === null) return;
+    if (document.activeElement !== codeInput) {
+        codeInput.focus();
+    }
     codeInput.setSelectionRange(ip-1, ip);
 }
 
 function startInterval() {
     if (runInterval) return;
+
+    codeInput.value = codeInput.value.replace(/[^+-<>[],.]/g, '');
+    codeInput.setAttribute('readonly', true);
 
     runInterval = setInterval(() => {
         // Execute chunk increments per interval step for optimal performance rendering
@@ -208,6 +215,10 @@ function stopExecution() {
     pauseInterval();
     bf.running = false;
     isScrollingPause = false;
+    wasStep = false;
+
+    codeInput.removeAttribute('readonly');
+    codeInput.value = codeInput.value.replace(/[^+-<>[],.]/g, '');
     setControlStates(false);
 }
 
@@ -253,16 +264,12 @@ btnRun.addEventListener('click', () => {
     bf.running = true;
 
     wasStep = false;
-    codeInput.value = codeInput.value.replace(/[^+-<>[],.]/g, '');
-    codeInput.setAttribute('readonly', true);
     setControlStates(true);
     startInterval();
 });
 
 btnTerminate.addEventListener('click', () => {
     stopExecution();
-    wasStep = false;
-    codeInput.removeAttribute('readonly');
 });
 
 btnReset.addEventListener('click', () => {

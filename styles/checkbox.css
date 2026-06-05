@@ -1,26 +1,28 @@
-.autoscroll-container {
-    margin: 10px auto;
+.checkbox-container {
+    margin: 5px 10px;
     text-align: left;
 }
 
-/* Чекбокс */
-#autoscroll-check {
+input[type="checkbox"] {
     width: 16px;
     height: 16px;
     cursor: pointer;
 
     accent-color: var(--accent-color, #4aa3ff);
 
+    font-size: var(--default-font-size);
+    font-family: var(--default-font-family);
+
     transition: box-shadow 0.2s ease, transform 0.15s ease;
 }
 
-#autoscroll-check:checked {
+input[type="checkbox"]:checked {
     box-shadow: 0 0 10px var(--accent-color);
     transform: scale(1.1);
 }
 
-/* Фокус для доступности */
-#autoscroll-check:focus-visible {
+/* Focus for accessibility */
+input[type="checkbox"]:focus-visible {
     outline: 2px solid var(--accent-color, #4aa3ff);
     outline-offset: 2px;
     border-radius: 4px;
@@ -28,12 +30,15 @@
 
 @media (max-width: 800px) {
 
-    .autoscroll-container {
+    .checkbox-container {
+        margin: 0 10px;
         text-align: center;
     }
 
-    #autoscroll-check {
+    input[type="checkbox"] {
         width: 28px;
         height: 28px;
+
+        font-size: calc(var(--default-font-size) * 0.75);
     }
 }

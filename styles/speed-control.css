@@ -11,7 +11,7 @@
 
 .range-slider {
     position: relative;
-    margin: 15px 0 10px 0;
+    margin: 10px 15px;
     border: 1px solid var(--border-color);
     border-radius: 3px;
 
